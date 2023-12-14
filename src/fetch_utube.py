@@ -30,7 +30,6 @@ load_dotenv()
 
 api_key=os.getenv("api_key")
 print(len(api_key if "API KEY Loaded !!" else "API Key Failed"))
-vid=""
 max_fetchable_comments = 100
 def ycurl(api_key, vid, mres, pt=None):
     if mres > max_fetchable_comments:
@@ -109,7 +108,7 @@ def _cached_fetch_video_comments(api_key, vid, comment_count):
     try:
         com = fetch_video_comments(api_key, vid, comment_count)
         comm_n, comments = com
-        file_name = "../data/%s.json"%(vid)
+        file_name = "../data/%s/%s.json"%(vid, vid)
         fileExist = isFileExist(file_name)
 
         if fileExist :
@@ -149,7 +148,7 @@ def _cached_fetch_video_info(api_key, vid):
     cache = None
     try:
         ss_data = fetch_video_info(api_key, vid)
-        file_name = "../data/%s.json"%(vid)
+        file_name = "../data/%s/%s.json"%(vid, vid)
         fileExist = isFileExist(file_name)
 
         if fileExist :
@@ -181,7 +180,7 @@ def _cached_fetch_video_info(api_key, vid):
 
 
 def cached_fetch_video_comments(api_key, vid, comment_count, refetch=False):
-    file_name = "../data/%s.json"%(vid)
+    file_name = "../data/%s/%s.json"%(vid, vid)
     cache = None
     try:
         file = open(file_name, "r")
@@ -215,7 +214,7 @@ def cached_fetch_video_comments(api_key, vid, comment_count, refetch=False):
     return cache
 
 def cached_fetch_video_info(api_key, vid, refetch=False):
-    file_name = "../data/%s.json"%(vid)
+    file_name = "../data/%s/%s.json"%(vid, vid)
     cache = None
     try:
         file = open(file_name, "r")

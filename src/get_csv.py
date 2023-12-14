@@ -39,7 +39,7 @@ def get_csv(vid):
         "replies":  []
     }
     
-    file = open("%s"%vid)
+    file = open("../data/%s/%s.json"%(vid, vid))
     vid_json = json.load(file)
     vinfo_t = vid_json["data"]["ss_data"]["items"][0]["snippet"]
     vinfo_s = vid_json["data"]["ss_data"]["items"][0]["statistics"]
@@ -75,7 +75,6 @@ def get_csv(vid):
             data["like"]    +=  [ lc ]
             data["replies"] +=  [ rc ]
     df = pd.DataFrame(data)
-    df.to_csv("%s.csv"%vid)
-    print(df)
+    df.to_csv("../data/%s/%s.csv"%(vid, vid))
 vid = sys.argv[1]
 get_csv(vid)
