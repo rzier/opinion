@@ -2,7 +2,7 @@
 '''
 
 Data Science Project Opinion
-Rzier
+
 
 
 Fetch Comments
